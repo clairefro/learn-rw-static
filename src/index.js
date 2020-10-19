@@ -2,8 +2,9 @@ const config = require("../config");
 const fs = require("fs");
 const { createDoc, createDocPages } = require("./docs.js");
 const addHomepage = require("./homepage");
+const copyDir = require("./util/copyDir");
 
-const { outdir, sourcedir, docsDirName } = config.dev;
+const { outdir, sourcedir, docsDirName, assetsDir } = config.dev;
 
 const docs = fs
 	.readdirSync(sourcedir)
@@ -21,3 +22,8 @@ if (!fs.existsSync(outdir)) {
 
 createDocPages(docs, docsDirName);
 addHomepage(docs, docsDirName);
+
+// TODO: copy assets folder
+const assetsOutdir = [outdir, "assets"].join("/");
+copyDir(assetsDir, assetsOutdir);
+console.log("Website generated!");

@@ -13,3 +13,9 @@ Site config is set in `config.js`.
 # Style
 
 It's got none.
+
+# Server
+
+Some features require a local server to view, like highlightjs syntax highlighting.
+
+Remember there is always good ol' `python3 -m http.server`

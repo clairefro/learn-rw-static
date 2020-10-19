@@ -6,6 +6,6 @@ title: Doc 3
 
 Nothing exciting really.
 
-```js
+```javascript
 console.log("Nothing to see here");
 ```

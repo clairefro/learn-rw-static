@@ -1,7 +1,7 @@
 const fs = require("fs");
 const config = require("../config");
 const fm = require("front-matter");
-const marked = require("marked");
+const marked = require("./marked");
 
 const { outdir } = config.dev;
 
@@ -18,13 +18,15 @@ const buildDocPage = (data) => `
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
+        <link rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.1/build/styles/default.min.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="${config.siteDescription}" />
         <title>${data.attributes.title}</title>
     </head>
     <body>
         <header>
-            <a href="/">Go home</a>
+            <a href="../index.html">Go home</a>
         </header>
         <div class="content">
                 <h1>${data.attributes.title}</h1>

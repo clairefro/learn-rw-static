@@ -6,6 +6,7 @@ const config = {
 		sourcedir: "./content",
 		outdir: "./public",
 		docsDirName: "docs",
+		assetsDir: "./assets",
 	},
 };
 
