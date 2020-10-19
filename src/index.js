@@ -1,8 +1,9 @@
 const config = require("../config");
 const fs = require("fs");
-const createDoc = require("./docs.js");
+const { createDoc, createDocPages } = require("./docs.js");
 const addHomepage = require("./homepage");
 
+// TODO: skip non-md files
 const docs = fs
 	.readdirSync(config.dev.sourcedir)
 	.map((doc) => doc.slice(0, -3))
@@ -16,4 +17,5 @@ if (!fs.existsSync(config.dev.outdir)) {
 	fs.mkdirSync(config.dev.outdir);
 }
 
+createDocPages(docs);
 addHomepage(docs);
