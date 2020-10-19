@@ -5,10 +5,10 @@ const addHomepage = require("./homepage");
 
 const { outdir, sourcedir } = config.dev;
 
-// TODO: skip non-md files
 const docs = fs
 	.readdirSync(sourcedir)
-	.map((doc) => doc.slice(0, -3))
+	.filter((file) => file.match(/\.md$/))
+	.map((doc) => doc.slice(0, -3)) // chop off .md
 	.map((doc) => {
 		console.log(`Parsing "${doc}"...`);
 		return createDoc(doc);
