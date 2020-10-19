@@ -23,7 +23,7 @@ if (!fs.existsSync(outdir)) {
 createDocPages(docs, docsDirName);
 addHomepage(docs, docsDirName);
 
-// TODO: copy assets folder
 const assetsOutdir = [outdir, "assets"].join("/");
 copyDir(assetsDir, assetsOutdir);
+
 console.log("Website generated!");
