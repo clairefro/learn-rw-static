@@ -3,7 +3,7 @@ const fs = require("fs");
 const { createDoc, createDocPages } = require("./docs.js");
 const addHomepage = require("./homepage");
 
-const { outdir, sourcedir } = config.dev;
+const { outdir, sourcedir, docsDirName } = config.dev;
 
 const docs = fs
 	.readdirSync(sourcedir)
@@ -19,5 +19,5 @@ if (!fs.existsSync(outdir)) {
 	fs.mkdirSync(outdir);
 }
 
-createDocPages(docs, "docs");
-addHomepage(docs, "docs");
+createDocPages(docs, docsDirName);
+addHomepage(docs, docsDirName);

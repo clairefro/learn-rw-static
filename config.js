@@ -5,6 +5,7 @@ const config = {
 	dev: {
 		sourcedir: "./content",
 		outdir: "./public",
+		docsDirName: "docs",
 	},
 };
 

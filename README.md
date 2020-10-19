@@ -9,3 +9,7 @@ Inspired by [this lovely piece](https://medium.com/better-programming/how-to-bui
 Run `yarn build` to take all markdown files in `content` directory and parse them into an indexed static website with a homepage.
 
 Site config is set in `config.js`.
+
+# Style
+
+It's got none.
