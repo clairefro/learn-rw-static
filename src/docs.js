@@ -3,6 +3,8 @@ const config = require("../config");
 const fm = require("front-matter");
 const marked = require("marked");
 
+const { outdir } = config.dev;
+
 const createDoc = (docPath) => {
 	const data = fs.readFileSync(`${config.dev.sourcedir}/${docPath}.md`, "utf8");
 	const content = fm(data);
@@ -33,17 +35,22 @@ const buildDocPage = (data) => `
 </html>
 `;
 
-const createDocPages = (docs) => {
+const createDocPages = (docs, docsDirName) => {
+	const docsDir = `${outdir}/${docsDirName}`;
+	if (!fs.existsSync(docsDir)) {
+		console.log(`Building output directory "${docsDir}"`);
+		fs.mkdirSync(docsDir);
+	}
 	docs.forEach((doc) => {
-		const outPath = `${config.dev.outdir}/${doc.path}`;
-		if (!fs.existsSync(outPath)) fs.mkdirSync(outPath);
+		const outPath = `${outdir}/${docsDirName}/${doc.path}`;
 
-		fs.writeFile(`${outPath}/index.html`, buildDocPage(doc), (e) => {
+		fs.writeFile(`${outPath}.html`, buildDocPage(doc), (e) => {
 			if (e) throw e;
-			console.log(`${doc.path}/index.html created successfully`);
+			console.log(`${outPath}.html created successfully`);
 		});
 	});
 };
+
 module.exports = {
 	createDoc,
 	createDocPages,

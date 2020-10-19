@@ -1,7 +1,9 @@
 const fs = require("fs");
 const config = require("../config");
 
-const buildHomepage = (docs) => `
+const { outdir } = config.dev;
+
+const buildHomepage = (docs, docsDirName) => `
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -21,7 +23,7 @@ const buildHomepage = (docs) => `
                 ${docs
 					.map(
 						(doc) => `<div class="doc">
-                    <h3><a href="./${doc.path}">${doc.attributes.title}</a></h3>
+                    <h3><a href="./${docsDirName}/${doc.path}.html">${doc.attributes.title}</a></h3>
                     </div>`
 					)
 					.join("")}
@@ -34,8 +36,8 @@ const buildHomepage = (docs) => `
 </html>
 `;
 
-const addHomePage = (docs) => {
-	fs.writeFile(`${config.dev.outdir}/index.html`, buildHomepage(docs, config), (e) => {
+const addHomePage = (docs, docsDirName) => {
+	fs.writeFile(`${outdir}/index.html`, buildHomepage(docs, docsDirName), (e) => {
 		if (e) throw e;
 		console.log(`index.html was created successfully`);
 	});
