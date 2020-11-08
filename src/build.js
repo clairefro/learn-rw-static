@@ -11,11 +11,10 @@ const docs = walk(sourcedir)
 	.filter((file) => file.match(/\.md$/)) // only target markdown files
 	.map((docPath) => {
 		console.log(`Parsing "${docPath}"...`);
-		console.log({ docPath });
 		return createDoc(docPath);
 	});
 
-console.log({ docs });
+// console.log({ docs });
 
 if (!fs.existsSync(outdir)) {
 	console.log(`Building output directory "${outdir}"...`);
